@@ -1,0 +1,77 @@
+
+body{
+    padding: 0px;
+    margin: 0px;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+a {
+    color: inherit; 
+    text-decoration: inherit;
+  }
+
+#headerNav{
+    background-color: black;
+    color: white;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#logo{
+    width: 50px;
+}
+
+#inputPageListWrapper{
+    margin-top: 30px;
+}
+
+input{
+    margin-right: 5px;
+}
+
+#pageList{
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+    padding-left: 0px;
+}
+
+#pageList li{
+    padding: 5px 20px;
+}
+
+#pageList li:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+
+.selected{
+    background-color: white;
+    color: black;
+}
+
+#iconsWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#iconsWrapper div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 5px;
+}
+
+#iconsWrapper div img{
+    width: 30px;
+    height: 30px;
+    margin: 0px 5px;
+}
