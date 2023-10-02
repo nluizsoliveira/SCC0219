@@ -4,7 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/global.css">
-    <title></title>
+    <title>home</title>
+    <style>
+        #offerWrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #offerImg{
+            background-image: url(assets/oferta.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            width:60vw;
+            height: 70vh;
+            
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            
+        }
+
+        #offerImg span{
+            color: black;
+            font-size: 40px;
+            font-weight: bold;
+            background-color: white;
+        }
+
+        #offerImg:hover{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <nav id = 'headerNav'>
@@ -28,6 +60,15 @@
         </div>
     </nav>
 
-    <h1>Home - Em construção</h1>
+    <h1>OFERTA DO DIA</h1>
+
+
+    <div id = 'offerWrapper'>
+    <div id = 'offerImg'>
+        <span>De R$ 2000</span>
+        <span>PC GAMER COMPLETO</span>
+        <span>Por R$ 1500</span>
+    </div></div>
+    
 </body>
 </html>
