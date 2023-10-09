@@ -11,4 +11,4 @@ Features Implementadas: HTML e CSS para telas tamanho Desktop (>1200PX)
 ## Como Rodar (Temporário até possuir servidor para arquivos estáticos)
 1. Instalar VSCode
 2. Instalar Extensão LiveServer
-3. Rodar Go Live e abrir qualquer arquivo
+3. Rodar Go Live no canto direito inferior e abrir qualquer arquivo .html, navegar pela Navbar. 
