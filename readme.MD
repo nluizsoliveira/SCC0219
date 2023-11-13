@@ -8,7 +8,7 @@ Telas implementadas: Home, Login e Cadastro
 
 Features Implementadas: HTML e CSS para telas tamanho Desktop (>1200PX)
 
-## Como Rodar (Temporário até possuir servidor para arquivos estáticos)
-1. Instalar VSCode
-2. Instalar Extensão LiveServer
-3. Rodar Go Live no canto direito inferior e abrir qualquer arquivo .html, navegar pela Navbar. 
+## Como Rodar Frontend
+1. cd frontend/
+2. npm install
+3. npm run start
