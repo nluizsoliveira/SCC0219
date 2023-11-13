@@ -6,6 +6,7 @@ import Hardware from './Components/Hardware/Component';
 import Monte from './Components/Monte/Component';
 import Perifericos from './Components/Perifericos/Component';
 import Suporte from './Components/Suporte/Component';
+import Software from './Components/Software/Component'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home'); 
@@ -28,6 +29,9 @@ function App() {
         return <Perifericos/>
       case 'suporte':
         return <Suporte/>
+      case 'software':
+        return <Software/>
+
       default:
         return <div>Page Not Found</div>;
         
@@ -36,7 +40,6 @@ function App() {
 
   return (
     <div>
-      <h1>App</h1>
       <Navbar currentPage={currentPage} changePage={changePage} />
       <div>
         {renderPage()}
