@@ -30,7 +30,6 @@ input{
     padding: 5px 20px;
 }
 
-/* Button styles to mimic your previous anchor styles */
 #pageList button{
     background: none;
     color: inherit;
@@ -46,7 +45,6 @@ input{
     color: black;
 }
 
-/* Specificity increased for the .selected class */
 #pageList li.selected {
     background-color: white;
     color: black;
