@@ -9,6 +9,8 @@ import Suporte from './Components/Suporte/Component';
 import Software from './Components/Software/Component'
 import Home from './Components/Home/Component'
 import Cadastro from './Components/Cadastro/Component'
+import Login from './Components/Login/Component';
+import Carrinho from './Components/Carrinho/Component';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home'); 
@@ -35,6 +37,10 @@ function App() {
         return <Software/>
       case 'cadastro':
         return <Cadastro/>
+      case 'login':
+        return <Login/>
+      case 'carrinho':
+        return <Carrinho/>
       default:
         return <div>Page Not Found</div>;
         
