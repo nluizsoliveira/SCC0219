@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './Components/Navbar/Component';
 import About from './Components/About/Component'
 import Hardware from './Components/Hardware/Component';
+import Monte from './Components/Monte/Component';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home'); 
@@ -19,8 +20,11 @@ function App() {
         return <About/>
       case 'hardware':
         return <Hardware/>
+      case 'monte':
+        return <Monte/>
       default:
         return <div>Page Not Found</div>;
+        
     }
   };
 
