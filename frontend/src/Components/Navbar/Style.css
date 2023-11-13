@@ -56,7 +56,6 @@ input{
     color: black;
 }
 
-/* Additional style for hover effect on the entire li element */
 #pageList li:hover {
     background-color: white;
     color: black;

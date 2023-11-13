@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar/Component';
+import About from './Components/About/Component'
+import Hardware from './Components/Hardware/Component';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('home'); // Default page
+  const [currentPage, setCurrentPage] = useState('home'); 
 
   const changePage = (newPage) => {
     setCurrentPage(newPage);
@@ -13,7 +15,10 @@ function App() {
     switch (currentPage) {
       case 'home':
         return <div>Home Page Content</div>;
-      // Add cases for other pages
+      case 'about':
+        return <About/>
+      case 'hardware':
+        return <Hardware/>
       default:
         return <div>Page Not Found</div>;
     }
