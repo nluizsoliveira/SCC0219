@@ -1,6 +1,6 @@
 import './Style.css';
 
-function Monte({ currentPage, changePage }) {
+function Monte() {
     return (
         <h2>Monte o Seu - Em Construção</h2>
     );

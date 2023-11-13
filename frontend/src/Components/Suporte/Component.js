@@ -1,6 +1,6 @@
 import './Style.css';
 
-function Suporte({ currentPage, changePage }) {
+function Suporte() {
     return (
         <h2>Suporte - Em Construção</h2>
     );

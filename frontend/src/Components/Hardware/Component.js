@@ -1,6 +1,6 @@
 import './Style.css';
 
-function Hardware({ currentPage, changePage }) {
+function Hardware() {
     return (
         <h2>Hardware - Em Construção</h2>
     );

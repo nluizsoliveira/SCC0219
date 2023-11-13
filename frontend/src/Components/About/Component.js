@@ -1,6 +1,6 @@
 import './Style.css';
 
-function About({ currentPage, changePage }) {
+function About() {
     return (
         <h2>About - Em Construção</h2>
     );

@@ -1,6 +1,6 @@
 import './Style.css';
 
-function Perifericos({ currentPage, changePage }) {
+function Perifericos() {
     return (
         <h2>Periféricos - Em Construção</h2>
     );

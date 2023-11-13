@@ -1,6 +1,6 @@
 import './Style.css';
 
-function Software({ currentPage, changePage }) {
+function Software() {
     return (
         <h2>Software - Em Construção</h2>
     );
