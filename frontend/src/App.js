@@ -8,6 +8,7 @@ import Perifericos from './Components/Perifericos/Component';
 import Suporte from './Components/Suporte/Component';
 import Software from './Components/Software/Component'
 import Home from './Components/Home/Component'
+import Cadastro from './Components/Cadastro/Component'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home'); 
@@ -32,7 +33,8 @@ function App() {
         return <Suporte/>
       case 'software':
         return <Software/>
-
+      case 'cadastro':
+        return <Cadastro/>
       default:
         return <div>Page Not Found</div>;
         
