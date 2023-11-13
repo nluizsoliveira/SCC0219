@@ -5,6 +5,7 @@ import About from './Components/About/Component'
 import Hardware from './Components/Hardware/Component';
 import Monte from './Components/Monte/Component';
 import Perifericos from './Components/Perifericos/Component';
+import Suporte from './Components/Suporte/Component';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home'); 
@@ -25,6 +26,8 @@ function App() {
         return <Monte/>
       case 'perifericos':
         return <Perifericos/>
+      case 'suporte':
+        return <Suporte/>
       default:
         return <div>Page Not Found</div>;
         
