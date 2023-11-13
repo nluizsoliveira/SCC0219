@@ -7,6 +7,7 @@ import Monte from './Components/Monte/Component';
 import Perifericos from './Components/Perifericos/Component';
 import Suporte from './Components/Suporte/Component';
 import Software from './Components/Software/Component'
+import Home from './Components/Home/Component'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home'); 
@@ -18,7 +19,7 @@ function App() {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <div>Home Page Content</div>;
+        return <Home/>
       case 'about':
         return <About/>
       case 'hardware':

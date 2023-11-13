@@ -1,0 +1,30 @@
+#offerWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#offerImg{
+    background-image: url(assets/oferta.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:60vw;
+    height: 70vh;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    
+}
+
+#offerImg span{
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
+    background-color: white;
+}
+
+#offerImg:hover{
+    cursor: pointer;
+}
