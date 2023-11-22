@@ -21,11 +21,35 @@ function App() {
     fetch('http://localhost:8080/perifericos')
       .then(response => response.json())
       .then(json => setPeripheralsData(json))
-      .catch(error => console.error(error));
+      .catch(error => console.error('Error fetching peripherals:', error));
   }, []);
 
   const addToCart = (item) => {
     setCartItems([...cartItems, item]);
+  };
+
+
+  const finalizePurchase = () => {
+    fetch('http://localhost:8080/perifericos', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ cartItems }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 'error') {
+        alert('Error: ' + data.message); 
+      } else {
+        alert('Purchase successful!'); 
+        setCartItems([]);
+      }
+    })
+    .catch((error) => {
+      alert('An error occurred while processing your purchase.'); 
+      console.error('Purchase Error:', error);
+    });
   };
 
   const updatePeripheralItem = (updatedItem) => {
@@ -50,7 +74,11 @@ function App() {
       case 'monte':
         return <Monte />;
       case 'perifericos':
-        return <Perifericos data={peripheralsData} updateItem={updatePeripheralItem} addToCart={addToCart} />;
+        return <Perifericos 
+                 data={peripheralsData} 
+                 addToCart={addToCart} 
+                 updateItem={updatePeripheralItem} 
+               />;
       case 'suporte':
         return <Suporte />;
       case 'software':
@@ -60,7 +88,10 @@ function App() {
       case 'login':
         return <Login />;
       case 'carrinho':
-        return <Carrinho cartItems={cartItems} />;
+        return <Carrinho 
+                 cartItems={cartItems} 
+                 finalizePurchase={finalizePurchase} 
+               />;
       default:
         return <div>Page Not Found</div>;
     }
@@ -69,9 +100,7 @@ function App() {
   return (
     <div>
       <Navbar currentPage={currentPage} changePage={changePage} />
-      <div>
-        {renderPage()}
-      </div>
+      <div>{renderPage()}</div>
     </div>
   );
 }

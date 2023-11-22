@@ -7,6 +7,7 @@ const app = express();
 app.use(cors({
     origin: 'http://localhost:3000'
 }))
+app.use(express.json());
 const port = 8080
 app.listen(port);
 
@@ -53,6 +54,38 @@ let perifericos = {
 app.get('/perifericos', function(req, res) {
     console.log('GET: perifericos')
     res.json(perifericos)
+});
+
+
+app.post('/perifericos', function(req, res) {
+    console.log('POST: perifericos');
+    console.log(req.body)
+    const cartItems = req.body.cartItems;
+    let outOfStockItems = [];
+    let notFoundItems = [];
+
+    cartItems.forEach(cartItem => {
+        let item = perifericos.data.find(p => p.id === cartItem.id);
+
+        if (!item) {
+            notFoundItems.push(cartItem);
+        } else if (item.available === 0) {
+            outOfStockItems.push(item);
+        } else {
+            item.available -= 1; 
+        }
+    });
+
+    if (notFoundItems.length > 0 || outOfStockItems.length > 0) {
+        return res.status(400).json({
+            status: 'error',
+            message: 'Item not found or item out of stock.',
+            outOfStockItems: outOfStockItems,
+            notFoundItems: notFoundItems
+        });
+    }
+
+    res.json({ status: 'success', message: 'Purchase finalized', updatedPerifericos: perifericos });
 });
 
 console.log(`Running at localhost:${port}`)
