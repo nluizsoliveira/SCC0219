@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Style.css';
 
-function Perifericos() {
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-        fetch('http://localhost:8080/perifericos')
-            .then(response => response.json())
-            .then(json => setData(json))
-            .catch(error => console.error(error));
-    }, []);
-
-    const handleAddToCart = (id) => {
-        const newData = data['data'].map(item => {
-            if (item.id === id && item.available > 0) {
-                return { ...item, available: item.available - 1 };
-            }
-            return item;
-        });
-
-        setData({ data: newData });
+function Perifericos({ data, updateItem, addToCart }) {
+    const handleAddToCart = (item) => {
+        if (item.available > 0) {
+            const updatedItem = { ...item, available: item.available - 1 };
+            updateItem(updatedItem);
+            addToCart(updatedItem);
+        }
     };
 
     const truncateTitle = (title) => {
@@ -38,14 +26,14 @@ function Perifericos() {
                                 <h3 className='card-title'>{truncateTitle(item.name)}</h3>
                                 <p className='card-price'>R$ {item.price}</p>
                                 <p className='card-availability'>Em estoque: {item.available}</p>
+                                <button 
+                                    className='add-to-cart-btn' 
+                                    onClick={() => handleAddToCart(item)}
+                                    disabled={item.available === 0}
+                                >
+                                    Adicionar ao Carrinho
+                                </button>
                             </div>
-                            <button 
-                                className='add-to-cart-btn' 
-                                onClick={() => handleAddToCart(item.id)}
-                                disabled={item.available === 0}
-                            >
-                                Adicionar ao Carrinho
-                            </button>
                         </div>
                     ))
                     : 'Loading...'}

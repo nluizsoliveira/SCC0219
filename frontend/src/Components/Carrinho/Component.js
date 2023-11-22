@@ -1,8 +1,16 @@
+import React from 'react';
 import './Style.css';
 
-function Carrinho() {
+function Carrinho({ cartItems }) {
     return (
-        <h2>Carrinho - Em Construção</h2>
+        <div>
+            <h2>Carrinho - Em Construção</h2>
+            <ul>
+                {cartItems.map((item, index) => (
+                    <li key={index}>{item.name} - R$ {item.price}</li>
+                ))}
+            </ul>
+        </div>
     );
 }
 
