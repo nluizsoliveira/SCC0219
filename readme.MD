@@ -14,11 +14,14 @@ Casos de uso:
 3. Dar F5 e verificar que dados manipulados estão persistentes, pois mudanças foram atualizadas no objeto no servidor
 
 ## 1. Subir Backend
+```bash
 cd backend/
 npm install
 npm start
-
+```
 ## 2. Subir Frontend
-1. cd frontend/
-2. npm install
-3. npm run start
+```
+cd frontend/
+npm install
+npm run start
+```
