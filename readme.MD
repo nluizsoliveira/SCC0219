@@ -6,7 +6,13 @@ Design/Protótipo por Guilherme Pacheco - https://www.figma.com/file/T4BFtr6fGN2
 
 Telas implementadas: Home, Login e Cadastro
 
-Features Implementadas: HTML e CSS para telas tamanho Desktop (>1200PX)
+Features Implementadas: Aba perifericos integrada com carrinho, memória persistente para periféricos no servidor.
+
+Casos de uso: 
+1. Adicionar itens da aba periféricos para o carrinho
+2. Finalizar compra a partir do carrinho
+3. Dar F5 e verificar que dados manipulados estão persistentes, pois mudanças foram atualizadas no objeto no servidor
+
 ## 1. Subir Backend
 cd backend/
 npm install
