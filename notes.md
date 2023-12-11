@@ -168,3 +168,38 @@ function ProductRow({product}){
 export default App;
 ```
 
+The version above is only static: search and filter are not implemented yet. 
+However, the data model (JSON) is properly being rendered as hierachical components in react through top->down passing props. 
+![](https://i.imgur.com/v3Vk9PK.png)
+
+### 0.3: Find the minimal but complete representation of UI state 
+
+**States** allow changes made to data model dinamically reflect on the UI. 
+
+**DRY** (Don't Repeat Yourself) principle: **"Every piece of knowledge must have a single, unambiguous, authoritative representation within a system"**.
+
+Try to figure out the absolute minimal representation of the application needs and compute everything else on demand. 
+
+EX: In a shopping list, items can be stored as an array in state. The numbers of items don't need to be a state: simply read the length of the array. 
+
+#### **MINDSET FOR DEFINING STATES**: 
+
+1. Does it remain unchanged over time? If so, it isn’t state.
+2. Is it passed in from a parent via props? If so, it isn’t state.
+3. Can you compute it based on existing state or props in your component? If so, it definitely isn’t state!
+
+What’s left is probably state.
+
+
+On the example: 
+
+1. The original list of products
+2. The search text the user has entered
+3. The value of the checkbox
+4. The filtered list of products
+
+We have:
+1. List of produts **is not** a state. As it's passed via props. 
+2. Search text the user has entered **is** a state. It changes over time, it's not passed via props and cannot be computed via existant props. 
+3. Value of the checkbox **is** a state. 
+4. Filtered list of products **is not** a state. Although it changes over time, it's computable based on the original list of products which is passed via props. 
