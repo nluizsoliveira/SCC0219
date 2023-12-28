@@ -170,6 +170,8 @@ export default App;
 
 The version above is only static: search and filter are not implemented yet. 
 However, the data model (JSON) is properly being rendered as hierachical components in react through top->down passing props. 
+
+
 ![](https://i.imgur.com/v3Vk9PK.png)
 
 ### 0.3: Find the minimal but complete representation of UI state 
