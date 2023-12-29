@@ -205,3 +205,155 @@ We have:
 2. Search text the user has entered **is** a state. It changes over time, it's not passed via props and cannot be computed via existant props. 
 3. Value of the checkbox **is** a state. 
 4. Filtered list of products **is not** a state. Although it changes over time, it's computable based on the original list of products which is passed via props. 
+
+### 0.4 - Identify where state should live
+After defining what are the states of the application, we need to define which components owns the state. 
+
+React uses one-way data flow, passing data from parent to childs on the hierarchy. 
+
+Rules are: 
+1. List all components that render something based on the state
+2. Find their closest parent in common. It should hold the state.
+3. If there's not a parent, wrap them in a parent state holder. 
+
+The example application has two states: 
+1. Search text user promped. 
+2. Value of the checkbox that defines if only stored items will be displayed. 
+
+Those are our components hierarchy by now: 
+
+
+```
+1.FilterableProductTable
+    2. SearchBar
+    3. ProductTable
+        3.1 ProductCategoryRow
+        3.2 ProductRow
+```
+
+The components that need the state are: 
+2. SearchBar, that displays the chexbox and text searched
+3. ProductTable, that displays the content filtered based 
+
+Therefore, `1. FilterableProductTable` should be the owner of both states. 
+Since it's the component higher up in the hierarchy that parents all subcomponents
+that need the states. 
+
+
+## Hook #1 - UseState(state, setState)
+Add a state to the component. Ex:
+
+```javascript
+const [age, setAge] = useState(28);
+const [name, setName] = useState('Taylor');
+const [todos, setTodos] = useState(() => createTodos());
+```
+
+**Parameters**:
+- `initialState`: Can be any type (number, integer, objects, etc), but have a special behaviour if it's a function. 
+
+  If you pass a function as initialState, it will be treated as an initializer function. It should be pure, should take no arguments, and should return a value of any type. React will call your initializer function when initializing the component, and store its return value as the initial state.
+
+**Returns**:
+Returns an array (which is destructured when assigning `[state, stateState]`:
+1. Current state. During first render, the one passed as argument to useState().
+2. A `setState()` function that:
+    1. Update the state based on the argument. 
+    2. Forces a re-render.   
+
+**Warning**:
+1. UseState is a hook. It can only be called at the top level of the component or other custom hooks. It's not possible to
+call useState from loops or conditionals. If you need that, create another component and move the hook to it. 
+2. In Strict mode, react calls initializer function twice in order to help finding accidental impurities. This is a 
+development-only behavior and doesnt affect production. 
+
+**About setState() function**
+Its possible to: 
+1. Pass a state directly to setState()
+2. Pass a function whose argument will be the previous state, and return, the new state. 
+
+Ex:
+
+```js
+const [name, setName] = useState('Edward');
+const [age, setAge] = useState(12);
+
+function handleClick() {
+  setName('Taylor');
+  setAge(state => state + 1);
+```
+
+**Warnings**
+1. set function only updates the state variable for the next render. If you read the state variable after calling the set function, you will still get the old value that was on the screen before your call.
+```js
+import { useState } from 'react';
+
+function MyComponent() {
+  const [age, setAge] = useState(42);
+  const [name, setName] = useState('Taylor');
+  function handleClick() {
+  setName('Robin');
+  console.log(name); // Still "Taylor"!
+
+```
+2. If the new value you provide is identical to the current state, as determined by an Object.is comparison, React will skip re-rendering the component and its children.
+3. React batches state updates. It updates the screen after all the event handlers have run and have called their set functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use flushSync.
+```js
+import React, { useState } from 'react';
+import { flushSync } from 'react-dom';
+
+function ExampleComponent() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    // Atualiza o estado assincronamente
+    setCount(count + 1);
+
+    // Executa imediatamente após a atualização do estado
+    flushSync(() => {
+      // Acessa o DOM ou realiza operações dependentes do DOM
+      const updatedCount = count + 1; // Usando a atualização já realizada no estado
+      console.log(`Count atualizado imediatamente: ${updatedCount}`);
+    });
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={handleClick}>Incrementar</button>
+    </div>
+  );
+}
+
+export default ExampleComponent;
+```
+4. Calling the set function during rendering is only allowed from within the currently rendering component. React will discard its output and immediately attempt to render it again with the new state. This pattern is rarely needed, but you can use it to store information from the previous renders.
+```javascript
+import React, { useState, useEffect } from 'react';
+
+function ExampleComponent() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    // This will cause the warning because it changes state during rendering
+    setCount(count + 1);
+  }, []);
+
+  // Instead of updating count directly, use a setTimeout to update it later
+  //  setTimeout(() => {
+  //    setCount(count + 1);
+  //  }, 0);
+  return (
+    <div>
+      <p>Count: {count}</p>
+    </div>
+  );
+}
+```
+
+**BASIC USE CASES OF SETSTATE()**: 
+1. Counter
+2. Textual inputs
+3. CheckBox
+4. Forms
+
